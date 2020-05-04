@@ -1,33 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<table>
+    <tr>
+        <th>id</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Detalhe</th>
+    </tr>
+    <tr *ngFor='let pessoas of pessoasArray'>
+        <td>{{pessoas.id}}</td>
+        <td>{{pessoas.name}}</td>
+        <td>{{pessoas.email}}</td>
+        <td><button (click)="detalheDaPessoa(pessoas)">Detalhe</button></td>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <table>
-        <tr>
-            <th>id</th>
-            <th>Nome</th>
-            <th>E-mail</th>
-            <th>Detalhe</th>
-        </tr>
-
-        <tr *ngFor='let pessoas of pessoasArray'>
-            <td>{{pessoas.id}}</td>
-            <td>{{pessoas.name}}</td>
-            <td>{{pessoas.email</td>
-            <td><button (click)="detalheDaPessoa(pessoasArray.id)">Detalhe</button></td>
-        </tr>
-    </table>
-
-    <div *ngIf="detalhePessoa">
-        <app-pessoas-detalhe [pessoas]="pessoa"></app-pessoas-detalhe>
-    </div>
-</body>
-
-</html>
+    </tr>
+</table>
+<div *ngIf='detalhePessoa'>
+    <app-pessoas-detalhes [pessoas]="pessoas" (NovaPessoa)='alterarPessoas($event)'></app-pessoas-detalhes>
+</div>

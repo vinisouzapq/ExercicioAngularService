@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { pessoas } from './pessoas/pessoas.model';
-
+import { Pessoas } from './pessoas/pessoas.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PessoasService {
 
-  pessoasArray: pessoas[] = [
+  pessoasArray: Pessoas[] = [
     {
       "id": 0,
       "name": "Saunders Rosa",
@@ -56,7 +55,9 @@ export class PessoasService {
       "sexo": "female",
       "email": "bonnieestrada@eyewax.com"
     }
-  ]
+  ];
+
+
 
   constructor() { }
 
@@ -65,9 +66,22 @@ export class PessoasService {
   }
 
   getPessoa(id) {
-    this.pessoasArray.forEach(pessoa => {
-      if (pessoa.id == id)
-        return pessoa;
+    this.pessoasArray.forEach(pessoas => {
+      if (pessoas.id == id) {
+        return pessoas;
+      }
+    })
+
+  }
+
+  alterarPessoas(pessoas) {
+    this.pessoasArray.forEach(pessoas => {
+      if (pessoas.id == pessoas.id) {
+        this.pessoasArray[pessoas.id] = pessoas;
+        console.log(pessoas);
+      }
     })
   }
+
+
 }

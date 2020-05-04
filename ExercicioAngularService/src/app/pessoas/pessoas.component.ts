@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { pessoas } from '../pessoas/pessoas.model';
-import { PessoasService } from '../person.service';
- 
+import { Pessoas } from './pessoas.model'; 
+import { PessoasService } from '../pessoas.service';
 @Component({
   selector: 'app-pessoas',
   templateUrl: './pessoas.component.html',
@@ -9,31 +8,40 @@ import { PessoasService } from '../person.service';
 })
 export class PessoasComponent implements OnInit {
 
-  pessoasArray: pessoas[] = [];
-  pessoas: pessoas;
-  detalhePessoas: boolean = false;
 
 
-  constructor(private pessoasService: PessoasService) { }
+
+  constructor(private pessoasService: PessoasService) {
+  }
 
   ngOnInit(): void {
     this.pessoasArray = this.pessoasService.getPessoas();
     console.log(this.pessoasArray);
   }
 
-  detalheDaPessoa(id) {
-    console.log(id);
-    this.detalhePessoas = true;
+
+  pessoasArray: Pessoas[] = [];
+  pessoa: Pessoas;
+  detalhePessoa: boolean = false;
+
+  alterarPessoas(_pessoas) {
+    this.pessoasService.alterarPessoas(_pessoas);
+  }
+
+
+  detalheDaPessoa(pessoas) {
+    console.log(pessoas);
+    this.detalhePessoa = true;
+    this.pessoa = pessoas;
+  }
+
+  getPessoas(id) {
     this.pessoasArray.forEach(pessoa => {
       if (pessoa.id == id) {
-        this.pessoas = pessoa;
+        return pessoa;
       }
     })
   }
-  alterarPessoa(pessoa) {
-    this.pessoasArray.forEach(pessoa => {
-      if (pessoa.id == pessoa.id)
-        pessoa.name = pessoa.name;
-    })
-  }
+
+
 }
